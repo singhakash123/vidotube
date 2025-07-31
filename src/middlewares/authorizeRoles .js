@@ -1,15 +1,23 @@
 import { ApiError } from "../utils/ApiError.js";
+export const authorizeRoles = (...allowedRoles) => {
+  return (req, _ , next) => {
+    const userRole = req.user?.role;
 
-export const authorizeRoles  = async (...allowedRoles) =>{
-        return (req , res , next) => {
-                   const userRole = req.user?.role; 
-                   if(!userRole){
-                        throw new ApiError(403, "You are not authorized to access this resource") 
-                   };
-        } 
-        next()
-}
+    if (!userRole || !allowedRoles.includes(userRole)) {
+      throw new ApiError(403, "You are not authorized to access this resource");
+    }
 
+    next(); // allow access
+  };
+};
+
+/*
+
+authorizeRoles("ADMIN")
+authorizeRoles("SELLER", "EDITOR")
+authorizeRoles("USER", "ADMIN", "MOD")
+
+*/
 /*
 // constants/roles.js
 export const ROLES = {
