@@ -16,8 +16,10 @@ project-root/
 ├── index.js # Entry point (start server, connect DB)
 ├── app.js # Main express app (routes, middleware load)
 
+    ├── db /
+    |     └── index.js   # Database connection logic
+
     ├── config/                 # 💡 All configs here
-    │   └── db.js               # Database connection logic
     │   └── cloudinary.js       # Cloudinary config
     │   └── logger.js           # Winston or custom logger
     │   └── rateLimiter.js      # Security middlewares (rate limit etc)
