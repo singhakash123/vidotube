@@ -11,16 +11,22 @@ dotenv.config({
 // port setup : 
 const port = process.env.PORT || 5000
 
-// db connection with server : 
 
+app.on("error", (error) => {
+  console.error("❌ Application-level error:", error);
+  process.exit(1); // optional: exit process on critical failure
+});
+
+
+// db connection with server : 
 db_connected()
 .then(() =>{
      app.listen(port , () =>{
                console.log(`Server connection successfull PORT : ${port}`)
      })
 })
+
 .catch((error) =>{
                console.log(`Server connection failed with database` , error.message);
-
                process.exit(1)
 })

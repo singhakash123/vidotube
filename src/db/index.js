@@ -1,4 +1,4 @@
-import mongoose, { modelNames } from "mongoose"
+import mongoose from "mongoose"
 import { db_name } from "../constant.js"
 
 export const db_connected = async () => {
